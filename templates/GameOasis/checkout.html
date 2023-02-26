@@ -5,7 +5,7 @@
 
 	
 	{% block h2_block %}
-	Checkout
+		Checkout
 	{% endblock %}
 
 	
@@ -33,14 +33,8 @@
 							<input class="form-control" type="text" name="city" placeholder="City..">
 						</div>
 						<div class="form-field">
-							<input class="form-control" type="text" name="state" placeholder="State..">
-						</div>
-						<div class="form-field">
-							<input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
-						</div>
-						<div class="form-field">
-							<input class="form-control" type="text" name="country" placeholder="Zip code..">
-						</div>
+							<input class="form-control" type="text" name="country" placeholder="Country..">
+						
 					</div>
 
 					<hr>
@@ -51,6 +45,7 @@
 			<br>
 			<div class="itemlayout-element hidden" id="payment-info">
 				<small>Paypal Options</small>
+				<button id="make-payment">Make payment</button>
 			</div>
 			
 		</div>
@@ -61,17 +56,62 @@
 				<hr>
 				<h3>Order Summary</h3>
 				<hr>
+				{% for item in items %}
 				<div class="cart-row">
-					<div style="flex:2"><img class="image-resize" src="{% static 'images/placeholder.png' %}"></div>
-					<div style="flex:2"><p>Product 1</p></div>
-					<div style="flex:1"><p>$20.00</p></div>
-					<div style="flex:1"><p>x2</p></div>
+					<div style="flex:2"><img class="image-resize" src="{{item.product.image_url}}"></div>
+					<div style="flex:2"><p>{{item.product.name}}</p></div>
+					<div style="flex:1"><p>£{{item.product.price|floatformat:2}}</p></div>
+					<div style="flex:1"><p>x{{item.quantity}}</p></div>
 				</div>
-				<h5>Items:   2</h5>
-				<h5>Total:   $40</h5>
+				{% endfor %}
+				<h5>Items:   {{order.calculate_cart_items}}</h5>
+				<h5>Total:   £{{order.calculate_cart_total|floatformat:2}}</h5>
 			</div>
 		</div>
-	</div>
+	
+	<script type="text/javascript">
+		var shipping = '{{order.shipping}}'
+		var total = '{{order.calculate_cart_total|floatformat:2}}'
+		
+		if(shipping == 'False'){
+		
+			document.getElementById('shipping-info').innerHTML = '';
+			
+		}
+		
+		if(shipping == 'False'){
+		
+		document.getElementById('payment-info').classList.remove('hidden');
+			
+		}
+		
+		
+		var form = document.getElementById('form')
+		
+		form.addEventListener('submit', function(e){
+			e.preventDefault()
+			console.log('Form submitted...')
+			document.getElementById('form-button').classList.add('hidden');
+			document.getElementById('payment-info').classList.remove('hidden');
+			})
+			
+		
+		document.getElementById('make-payment').addEventListener('click', function(e){
+			submitFormData()
+		})
+		function submitFormData(){
+			console.log('Payment button clicked')
+			
+			var userFormData = {'name' : null, 'email': null, 'total' : total,}
+			var shippingInfo = {'address' : null, 'ciy': null, 'country' : null,}
+			
+			if(shipping == 'True'){
+				shippingInfo.address = form.address.value
+				shippingInfo.city = form.city.value
+				shippingInfo.country = form.country.value
+			}
+			}
+	</script>
 	
 	
 	{% endblock navbar_content %}
