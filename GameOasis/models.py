@@ -37,7 +37,7 @@ class OrderCart(models.Model):
     transaction_id = models.CharField(max_length=200, null=True)
 
     def __str__(self):
-        return str(self.id)
+        return f"{self.id}"
 
     @property
     def calculate_cart_total(self):
@@ -82,3 +82,5 @@ class ShippingDetails(models.Model):
 
     def __str__(self):
         return self.address
+
+

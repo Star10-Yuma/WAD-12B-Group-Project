@@ -3,6 +3,11 @@ from .models import *
 from django.http import JsonResponse
 import json
 import datetime
+from paypal.standard.models import ST_PP_COMPLETED
+from paypal.standard.ipn.signals import valid_ipn_received
+from django.urls import reverse
+from django.shortcuts import render
+from paypal.standard.forms import PayPalPaymentsForm
 # Create your views here.
 def home(request):
 
@@ -142,6 +147,9 @@ def orderComplete(request):
             ShippingDetails.objects.create(customer=customer, order_cart=order, address=data['shipping']['address'], city=data['shipping']['city'], country=data['shipping']['country'],)
 
     else:
-        print('User is not loged in..')
+        print('User is not logged in..')
 
     return JsonResponse('Payment complete!', safe=False)
+
+
+
