@@ -2,13 +2,94 @@
 {% extends 'GameOasis/base.html' %}
 {% load static %}
 {% block navbar_content %}
-<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
+    <link rel="stylesheet" href = "{% static 'css/style.css' %}">
+</head>
 
-	
-	{% block h2_block %}
-	Home
-	{% endblock %}
+<body>
 
-		
-	{% endblock navbar_content %}
 
+    <section id="slider">
+        <div class="container">
+            <div class="subcontainer">
+                <div class="slider-wrapper">
+                    <div>
+                        <h2>Upcoming Videogames</h2>
+                    </div>
+                    <br>
+                    <div class="my-slider">
+                        <div>
+                            <div class="slide">
+                                <div class="slide-img img-1">
+                                    <a href="https://www.gamespot.com/articles/2023-upcoming-games-release-schedule/1100-6508202/">Learn More</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Upcoming games</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="slide">
+                                <div class="slide-img img-2">
+                                    <a href="https://wwe.2k.com/2k23/">Learn More</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>WWE 2K23</h3>
+                                    <p>Available on all consoles</p>
+                                </div>
+                            </div>
+                        </div>   
+                        <div>
+                            <div class="slide">
+                                <div class="slide-img img-3">
+                                    <a href="https://www.techradar.com/news/suicide-squad-game">Learn More</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Suicide Squad: Kill The Justice League</h3>
+                                    <p>Available on all consoles</p>
+                                </div>
+                            </div>
+                        </div>   <div>
+                            <div class="slide">
+                                <div class="slide-img img-4">
+                                    <a href="https://www.residentevil.com/re4/en-us/">Learn More</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Resident Evil 4 Remake</h3>
+                                    <p>Available on all consoles</p>
+                                </div>
+                            </div>
+                        </div>   <div>
+                            <div class="slide">
+                                <div class="slide-img img-5">
+                                    <a href="https://www.ubisoft.com/en-us/game/assassins-creed/mirage">Learn More</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Assassin's Creed Mirage</h3>
+                                    <p>Available on all consoles</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+</body>
+{% endblock navbar_content %}
+
+
+
+
+</html>

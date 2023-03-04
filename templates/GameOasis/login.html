@@ -9,16 +9,21 @@
 	</h1>
 	
 	
-	<h2>
-	Testing
-	</h2>
-	
 	<body>
-	<div>
+
+		<form id="login_form" method="post" action="{% url 'GameOasis:login' %}">
+			{% csrf_token %}
+			Username: <input type="text" name="username" value="" size="50" />
+			<br />
+			Password: <input type="password" name="password" value="" size="50" />
+			<br />
+			<input type="submit" value="submit" />
+		</form>
+
+
+		<li><a href="{% url 'GameOasis:register' %}">Don't have an account? Click here to register</a></li>
+
 	
-		<li><a href="{% url 'GameOasis:home' %}">Home</a></li>
-		
-	</div>
 	</body>
 	
 </html>
