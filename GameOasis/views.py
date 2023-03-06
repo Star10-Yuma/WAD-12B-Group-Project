@@ -23,9 +23,6 @@ def home(request):
         order = {'calculate_cart_total': 0, 'calculate_cart_items': 0, 'shipping': False}
         cartItems = order['calculate_cart_items']
 
-
-
-
     context['cartItems'] = cartItems
 
     return render(request, 'GameOasis/home.html', context)
@@ -224,9 +221,14 @@ def view_product(request, product_name_slug):
     except Product.DoesNotExist:
         product = None
 
-    customer = request.user.customer
-    order, created = OrderCart.objects.get_or_create(customer=customer, is_complete=False)
-    cartItems = order.calculate_cart_items
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = OrderCart.objects.get_or_create(customer=customer, is_complete=False)
+        cartItems = order.calculate_cart_items
+    else:
+        items = []
+        order = {'calculate_cart_total': 0, 'calculate_cart_items': 0, 'shipping': False}
+        cartItems = order['calculate_cart_items']
 
     context_dict = {'product': product, 'cartItems': cartItems}
     return render(request, 'GameOasis/view_product.html', context_dict)
