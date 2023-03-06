@@ -3,17 +3,17 @@ from .forms import *
 from django.http import JsonResponse, HttpResponse
 import json
 import datetime
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 
-
 # Create your views here.
 def home(request):
 
+    context = {}
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = OrderCart.objects.get_or_create(customer=customer, is_complete=False)
@@ -24,8 +24,9 @@ def home(request):
         cartItems = order['calculate_cart_items']
 
 
-    context = { 'cartItems': cartItems}
 
+
+    context['cartItems'] = cartItems
 
     return render(request, 'GameOasis/home.html', context)
 
@@ -230,21 +231,33 @@ def view_product(request, product_name_slug):
     context_dict = {'product': product, 'cartItems': cartItems}
     return render(request, 'GameOasis/view_product.html', context_dict)
 
-def show_category(request, category_name_slug):
-    def show_category(request, category_name_slug):
+def show_category(request, category_id):
         context_dict = {}
-        allCategories = Category.objects.all()
 
         try:
-            category = Category.objects.get(slug=category_name_slug)
+            category = get_object_or_404(Category, id=category_id)
             products = Product.objects.filter(category=category)
             context_dict['category'] = category
             context_dict['products'] = products
+
+
         except Category.DoesNotExist:
             context_dict['category'] = None
             context_dict['products'] = None
 
-        context_dict['all'] = allCategories
+        if request.user.is_authenticated:
+            customer = request.user.customer
+            order, created = OrderCart.objects.get_or_create(customer=customer, is_complete=False)
+            cartItems = order.calculate_cart_items
+        else:
+            items = []
+            order = {'calculate_cart_total': 0, 'calculate_cart_items': 0, 'shipping': False}
+            cartItems = order['calculate_cart_items']
+
+        context_dict['cartItems'] = cartItems
+
+
+
         print(category.slug)
 
         return render(request, 'GameOasis/category.html', context_dict)

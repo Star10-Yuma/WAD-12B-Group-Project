@@ -47,18 +47,11 @@ const csrftoken = getToken('csrftoken');
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	          Dropdown
 	        </a>
-			{% if category %}
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			  {% if category.slug %}
-				<a class="dropdown-item" href="{% url 'GameOasis:show_category' category.slug %}">{{category.name}}</a>
-			  {% else %}
-				<a class="dropdown-item" href="#">No slug available</a>
-			  {% endif %}
-			  <div class="dropdown-divider"></div>
-			  <a class="dropdown-item" href="#">Action</a>
-			  <a class="dropdown-item" href="#">Another action</a>
+			  <a class="dropdown-item" href="{% url 'GameOasis:show_category' category_id=1 %}">Videogames</a>
+			  <a class="dropdown-item" href="{% url 'GameOasis:show_category'  category_id=2 %}">Consoles</a>
+			  <a class="dropdown-item" href="{% url 'GameOasis:show_category'  category_id=3 %}">Accessories</a>
 			</div>
-		  {% endif %}
 		  
 	      </li>
 	      <li class="nav-item">

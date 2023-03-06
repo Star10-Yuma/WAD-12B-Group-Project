@@ -17,7 +17,7 @@ urlpatterns = [
     path('update_item/', views.updateItem, name='update_item'),
     path('order-success/', views.orderComplete, name='orderComplete'),
     path('logout/', views.user_logout, name='logout'),
-    path('product/<slug:product_name_slug>/', views.view_product, name='view_product'),
-    path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
+    path('shop/product/<slug:product_name_slug>/', views.view_product, name='view_product'),
+    path('category/<int:category_id>/', views.show_category, name='show_category'),
 
 ]
