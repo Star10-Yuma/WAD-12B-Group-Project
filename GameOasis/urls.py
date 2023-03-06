@@ -12,11 +12,12 @@ urlpatterns = [
     path('shop/', views.shop, name='shop'),
     path('login/', views.user_login, name='login'),
     path('register/', views.register, name='register'),
-    path('category/', views.category, name='category'),
     path('checkout/', views.checkout, name='checkout'),
     path('cart/', views.cart, name='cart'),
     path('update_item/', views.updateItem, name='update_item'),
     path('order-success/', views.orderComplete, name='orderComplete'),
     path('logout/', views.user_logout, name='logout'),
+    path('product/<slug:product_name_slug>/', views.view_product, name='view_product'),
+    path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
 
 ]

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends 'GameOasis/base.html' %}
+{% load static %}
+<html>
+
+
+{% block navbar_content %}
+
+<div class="product-item">
+    <img class ="productImage" src="{{ product.image_url }}">
+    <div class="product-info">
+      <h2>{{product.name}}</h2>
+      <h4 style="display: inline-block; float: right">£{{product.price|floatformat:2}}</h4>
+      <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart"> Add to Cart</button>
+    </div>
+  </div>
+{% endblock navbar_content %}
+
+
+
+	
+
+	
+</html>

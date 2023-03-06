@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
+
 # Create your models here.
 
 class Customer(models.Model):
@@ -10,11 +12,37 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
+class Category(models.Model):
+    NAME_MAX_LENGTH = 128
+
+    name = models.CharField(max_length=NAME_MAX_LENGTH, unique=True)
+    slug = models.SlugField(unique = True)
+
+    #overrides the save method to get to slugify the names of the categories so that the URL can not have spaces in its category names
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
+#Fixes name from categorys to categories in admin page
+    class Meta:
+        verbose_name_plural = "Categories"
+
+#Outputs the String name of the category object
+    def __str__(self):
+        return self.name
+
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
     price = models.FloatField()
     is_digital = models.BooleanField(default = False, null=True, blank=False)
     image = models.ImageField(null=True, blank=True)
+    slug = models.SlugField(unique = True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+
+    #overrides the save method to get to slugify the names of the products so that the URL can not have spaces in its category names
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

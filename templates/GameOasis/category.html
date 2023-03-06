@@ -1,24 +1,40 @@
 <!DOCTYPE html>
+{% extends 'GameOasis/base.html' %}
+{% load static %}
+{% block navbar_content %}
 <html>
-	<title>
-	Category Page
-	</title>
+
 	
-	<h1>
-	Category Page
-	</h1>
-	
-	
-	<h2>
-	Testing
-	</h2>
-	
-	<body>
-	<div>
-	
-		<li><a href="{% url 'GameOasis:home' %}">Home</a></li>
-		
+{% if category and category.slug|length %}
+  <h1>{{ category.name }}</h1>
+{% else %}
+  Unknown Category
+{% endif %}
+
+
+	{% if products %}
+	{% for product in products %}
+	<div class="col-lg-4">
+	<img class ="productImage" src="{{ product.image_url }}">
+		<div class="itemlayout-element product">
+			<h6><strong>{{product.name}}</strong></h6>
+			<hr>
+			<button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart"> Add to Cart</button>
+			<a class="btn btn-outline-success" href="{% url 'GameOasis:view_product' product.slug %}">View</a>
+			<h4 style="display: inline-block; float: right">£{{product.price|floatformat:2}}</h4>
+		</div>
 	</div>
-	</body>
+	{% endfor %}
+	{% else %}
+			<strong>No products currently in this category.</strong>
+	{% endif %}
+
+		
+	{% endblock navbar_content %}
+
+
+
+	
+
 	
 </html>

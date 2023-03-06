@@ -10,20 +10,26 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 
+
 # Create your views here.
 def home(request):
 
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = OrderCart.objects.get_or_create(customer=customer, is_complete=False)
+        cartItems = order.calculate_cart_items
+    else:
+        items = []
+        order = {'calculate_cart_total': 0, 'calculate_cart_items': 0, 'shipping': False}
+        cartItems = order['calculate_cart_items']
 
 
+    context = { 'cartItems': cartItems}
 
 
-    return render(request, 'GameOasis/home.html')
+    return render(request, 'GameOasis/home.html', context)
 
 def contactus(request):
-
-
-
-
 
     return render(request, 'GameOasis/contactus.html')
 
@@ -34,22 +40,23 @@ def shop(request):
         order, created = OrderCart.objects.get_or_create(customer=customer, is_complete=False)
         items = order.orderitem_set.all()
         cartItems = order.calculate_cart_items
+
+        products = Product.objects.all()
+
+
     else:
         # if the user is not logged in it sets the cart to 0 to avoid any errors
         items = []
         order = {'calculate_cart_total': 0, 'calculate_cart_items': 0, 'shipping': False}
         cartItems = order['calculate_cart_items']
+        return redirect(reverse('GameOasis:login'))
 
-
-    products = Product.objects.all()
     context = {'products': products, 'cartItems': cartItems}
-
     return render(request, 'GameOasis/shop.html', context)
 
 
-def category(request):
 
-    return render(request, 'GameOasis/category.html' )
+
 
 
 def cart(request):
@@ -58,6 +65,9 @@ def cart(request):
         order, created = OrderCart.objects.get_or_create(customer = customer, is_complete=False)
         items = order.orderitem_set.all()
         cartItems = order.calculate_cart_items
+        context = {'items': items, 'order': order, 'cartItems': cartItems}
+
+        return render(request, 'GameOasis/cart.html', context)
 
     #This is for the guest user
     else:
@@ -65,11 +75,11 @@ def cart(request):
         items =[]
         order = {'calculate_cart_total': 0, 'calculate_cart_items': 0,'shipping': False}
         cartItems = order['calculate_cart_items']
+        return redirect(reverse('GameOasis:login'))
 
 
-    context = {'items': items, 'order': order, 'cartItems': cartItems}
 
-    return render(request, 'GameOasis/cart.html', context)
+
 
 
 def checkout(request):
@@ -205,4 +215,38 @@ def user_logout(request):
     logout(request)
     #Takes the user back to the homepage
     return redirect(reverse('GameOasis:home'))
+
+def view_product(request, product_name_slug):
+    try:
+        product = Product.objects.get(slug=product_name_slug)
+
+    except Product.DoesNotExist:
+        product = None
+
+    customer = request.user.customer
+    order, created = OrderCart.objects.get_or_create(customer=customer, is_complete=False)
+    cartItems = order.calculate_cart_items
+
+    context_dict = {'product': product, 'cartItems': cartItems}
+    return render(request, 'GameOasis/view_product.html', context_dict)
+
+def show_category(request, category_name_slug):
+    def show_category(request, category_name_slug):
+        context_dict = {}
+        allCategories = Category.objects.all()
+
+        try:
+            category = Category.objects.get(slug=category_name_slug)
+            products = Product.objects.filter(category=category)
+            context_dict['category'] = category
+            context_dict['products'] = products
+        except Category.DoesNotExist:
+            context_dict['category'] = None
+            context_dict['products'] = None
+
+        context_dict['all'] = allCategories
+        print(category.slug)
+
+        return render(request, 'GameOasis/category.html', context_dict)
+
 

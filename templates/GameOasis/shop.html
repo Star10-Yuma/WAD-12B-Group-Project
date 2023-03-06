@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 {% extends 'GameOasis/base.html' %}
 {% load static %}
-{% block navbar_content %}
 <html>
 
 	
 
+{% block navbar_content %}
 
+{% if messages %}
+<div class="alert alert-danger">
+	<ul>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+</div>
+{% endif %}
 	<div class="row">
 		{% for product in products %}
 		<div class="col-lg-4">
@@ -15,13 +24,14 @@
 				<h6><strong>{{product.name}}</strong></h6>
 				<hr>
 				<button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart"> Add to Cart</button>
-				<a class="btn btn-outline-success" href="#">View</a>
+				<a class="btn btn-outline-success" href="{% url 'GameOasis:view_product' product.slug %}">View</a>
 				<h4 style="display: inline-block; float: right">£{{product.price|floatformat:2}}</h4>
 			</div>
 		</div>
 		{% endfor %}
 	
 	</div>
+
 	
 {% endblock navbar_content %}
 
