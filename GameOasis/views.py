@@ -175,7 +175,7 @@ def user_login(request):
     #if the scenario was a HTTP GET
     else:
         #No context variables to return hence blank dictionary object so no third parameter
-        return render(request, 'GameOasis/login.html')
+        return render(request, 'GameOasis/login_new.html')
 
 
 def register(request):
@@ -204,7 +204,7 @@ def register(request):
         #Not a HTTP Post so we render the form using the two ModelForm instances so they are ready for user input
         user_form = UserForm()
 
-    return render(request, 'GameOasis/register.html', context = {'user_form': user_form, 'registered': registered})
+    return render(request, 'GameOasis/register_new.html', context = {'user_form': user_form, 'registered': registered})
 
 
 @login_required
