@@ -9,6 +9,89 @@
 	Contact Us
 	{% endblock %}
 
+	<head>
+		<meta charset="UTF-8">
+		<style>
+		  /* Center the form and add some padding */
+		form {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        }
+
+        /* Style the input fields */
+        input[type=text], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }  
+	
+		  /* Style the submit button */
+		input[type=submit] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		  }
+	
+		  /* Style the contact info box */
+		.contact-info {
+			position: fixed;
+			top: 50%;
+			right: 20px;
+			transform: translateY(-50%);
+			border: 1px solid #000000;
+			padding: 10px;
+			border-radius: 4px;
+			text-align: center;
+			font-size: 14px;
+		  }
+		</style>
+	</head>
+
+    <body>
+	<div class="container">
+		<h1>Contact Us</h1>
+		<p>contact us about any enquirty or issue relating to any of our products. Or any support/assistance in general</p>
+		<form method="POST" action="{% url 'GameOasis:contactus' %}">
+			{% csrf_token %}
+			<div class="name">
+				<label for="name">Name*:</label>
+				<input type="text" class="form-control" id="name" name="name" required>
+			</div>
+			<div class="phone-number">
+				<label for="phone-number">Phone Number:</label>
+				<input type="text" class="form-control" id="phone-number" name="phone-number">
+			</div>
+			<div class="email">
+				<label for="email">Email*:</label>
+				<input type="text" class="form-control" id="email" name="email" required>
+			</div>
+			<div class="subject">
+				<label for="subject">subject*:</label>
+				<input type="text" class="form-control" id="subject" name="subject" required>
+			</div>
+			<div class="question">
+				<label for="message">Question:</label>
+				<textarea class="form-control" id="question" name="question" rows="2"></textarea>
+			</div>
+			<button type="submit" class="submit">Submit</button>
+		</form>
+	</div>
+
+	<div class="contact-info">
+		<p>Game Oasis</p>
+		<p>Email: GameOasis@gameoasis.com</p>
+		<p>Phone: +44 123456789</p>
+		<p>Address: 220 Buchanan Street<br>G1 2FF <br>Glasgow</p>
+	  </div>
+
+	</body>
+
 		
 	{% endblock navbar_content %}
 
