@@ -45,11 +45,12 @@
 
                             <div class="form-group">
                                 <label for="signin_form">Username</label>
-                                <input type="text" class="form-control" id="signin_form" name="username" placeholder="Enter your username">
+                                <input type="text" class="form-control" id="signin_form" name="username"
+                                       placeholder="Enter your username">
                             </div>
                             <div class="form-group">
                                 <label for="signin_form">Password</label>
-                                <input type="password" class="form-control" name="password"  id="signin_form"
+                                <input type="password" class="form-control" name="password" id="signin_form"
                                        placeholder="Enter your password">
                             </div>
 
@@ -101,7 +102,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
 <script src="{% static 'assets/js/custom.js' %}"></script>
-
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+            {% if msg.message == 'Login success!'%}
+                window.location.href="/GameOasis/home/";
+            {% endif %}
+        {% endfor %}
+    </script>
+{% endif %}
 </body>
 
 </html>
