@@ -20,6 +20,7 @@ class Category(models.Model):
 
     #overrides the save method to get to slugify the names of the categories so that the URL can not have spaces in its category names
     def save(self, *args, **kwargs):
+        print(self.name, slugify(self.name))
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 #Fixes name from categorys to categories in admin page
@@ -87,6 +88,14 @@ class OrderCart(models.Model):
             if item.product.is_digital == False:
                 shipping = True
         return shipping
+
+    def get_order_items(self):
+        order_items = self.orderitem_set.all()
+        return order_items
+    def get_products(self):
+        order_items = self.get_order_items()
+        products  = [item.product for item in order_items]
+        return products
 
 
 class OrderItem(models.Model):

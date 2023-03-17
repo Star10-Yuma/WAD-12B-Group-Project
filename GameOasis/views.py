@@ -195,6 +195,7 @@ def register(request):
 
             #Updated registered to show that the form has been successful
             registered = True
+            redirect(reverse('GameOasis:home'))
 
         else:
             #prints any mistakes/invalid forms in the terminal
