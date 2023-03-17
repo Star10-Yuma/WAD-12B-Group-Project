@@ -1,3 +1,5 @@
+from django.contrib import messages
+
 from .models import *
 from .forms import *
 from django.http import JsonResponse, HttpResponse
@@ -161,16 +163,21 @@ def user_login(request):
             if user.is_active:
                 #user may login if active
                 login(request,user)
-                return redirect(reverse('GameOasis:home'))
+                messages.success(request, 'Login success!')
+                return render(request, 'GameOasis/login_new.html')
 
             else:
                 #else account inactive so no logging in
-                return HttpResponse("Your account is disabled")
+                # return HttpResponse("Your account is disabled")
+                messages.error(request, 'Your account is disabled.')
+                return render(request, 'GameOasis/login_new.html')
 
         else:
             #invalid login details provided so no logging in
             print(f"Invalid login details: {username}, {password}")
-            return HttpResponse("Invalid login details supplied.")
+            # return HttpResponse("Invalid login details supplied.")
+            messages.error(request, 'Invalid login details supplied.')
+            return render(request, 'GameOasis/login_new.html')
 
     #if the scenario was a HTTP GET
     else:
@@ -196,10 +203,15 @@ def register(request):
             #Updated registered to show that the form has been successful
             registered = True
             redirect(reverse('GameOasis:home'))
+            messages.success(request, "Successful registration!")
+            return render(request, 'GameOasis/register_new.html')
 
         else:
             #prints any mistakes/invalid forms in the terminal
             print(user_form.errors)
+            # messages.error(request, user_form.errors)
+            return render(request, 'GameOasis/register_new.html',
+                          context={'user_res': user_form.errors, 'registered': registered})
 
     else:
         #Not a HTTP Post so we render the form using the two ModelForm instances so they are ready for user input

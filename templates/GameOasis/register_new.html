@@ -56,7 +56,9 @@
                             <div class=" ">
 
                                 {% csrf_token %}
-
+                                {% if user_res %}
+                                    {{ user_res }}
+                                {% endif %}
                                 <div class="form-group">
                                     <label for="signin_form">Username</label>
                                     <input type="text" class="form-control" name="username" id="signin_form"
@@ -124,7 +126,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
 <script src="{% static 'assets/js/custom.js' %}"></script>
-
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+            {% if msg.message == 'Successful registration!'%}
+                window.location.href="/GameOasis/login/";
+            {% endif %}
+        {% endfor %}
+    </script>
+{% endif %}
 </body>
 
 </html>
