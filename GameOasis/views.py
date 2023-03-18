@@ -273,8 +273,6 @@ def show_category(request, category_id):
 
 
 
-        print(category.slug)
-
         return render(request, 'GameOasis/category.html', context_dict)
 
 

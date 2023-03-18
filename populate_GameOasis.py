@@ -1,7 +1,6 @@
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'websitemain.settings')
-from django.core.files import File
 from django.template.defaultfilters import slugify
 
 import django
@@ -16,7 +15,7 @@ def populate():
             'name': 'PS5',
             'price': 450.99,
             'is_digital': False,
-            'image': File(open(os.path.join('static', 'images', 'ps5.jpg'), 'rb')),
+            'image': 'ps5.jpg',
             'slug': 'ps5',
         }
     ]
@@ -26,7 +25,7 @@ def populate():
             'name': 'vbucks',
             'price': 99.99,
             'is_digital': True,
-            'image': File(open(os.path.join('static', 'images' , 'vbucks.png'), 'rb')),
+            'image': 'vbucks.png',
             'slug': 'vbucks',
 
         },
@@ -34,7 +33,7 @@ def populate():
             'name': 'fortnite skin',
             'price': 99.99,
             'is_digital': True,
-            'image': File(open(os.path.join('static', 'images' , 'R_2.png'), 'rb')),
+            'image': 'R_2.png',
             'slug': 'fortnite-skin',
 
         },
@@ -42,7 +41,7 @@ def populate():
             'name': 'God of War',
             'price': 59.99,
             'is_digital': False,
-            'image': File(open(os.path.join('static', 'images' , 'god-of-war-ragnarok-ps5_1.jpg'), 'rb')),
+            'image': 'god-of-war-ragnarok-ps5_1.jpg',
             'slug': 'god-of-war',
         }]
 
@@ -51,7 +50,7 @@ def populate():
             'name': 'Gaming Headphones',
             'price': 99.99,
             'is_digital': False,
-            'image': File(open(os.path.join('static', 'images' , 'logitech.jpg'), 'rb')),
+            'image': 'logitech.jpg',
             'slug': 'gaming-headphones',
 
         },
@@ -59,14 +58,14 @@ def populate():
             'name': 'gaming keyboard',
             'price': 49.99,
             'is_digital': False,
-            'image': File(open(os.path.join('static', 'images' , 'Best-cheap-gaming-keyboard-runner-up-Vava-Gaming-Keyboard.png'), 'rb')),
+            'image': 'Best-cheap-gaming-keyboard-runner-up-Vava-Gaming-Keyboard.png',
             'slug': 'gaming-keyboard',
         },
         {
             'name': 'gaming mouse',
             'price': 30.99,
             'is_digital': False,
-            'image': File(open(os.path.join('static', 'images' , 'mouse.jpg'), 'rb')),
+            'image': 'mouse.jpg',
             'slug': 'gaming-mouse',
         }]
 
@@ -77,9 +76,7 @@ def populate():
     }
 
     for categories, categories_data in categories.items():
-        print("Adding category", categories)
         c = add_categories(categories)
-        print("Added category", categories)
         for p in categories_data['products']:
             add_product(p['name'], p['price'], p['is_digital'], p['image'], c)
 
@@ -108,9 +105,7 @@ def add_product(name, price, is_digital, image, cat):
 
 
 def add_categories(name):
-    print(Category.objects.all())
     c, created = Category.objects.get_or_create(name=name)
-    print("saved category", c, created)
     c.save()
     return c
 

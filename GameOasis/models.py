@@ -20,7 +20,6 @@ class Category(models.Model):
 
     #overrides the save method to get to slugify the names of the categories so that the URL can not have spaces in its category names
     def save(self, *args, **kwargs):
-        print(self.name, slugify(self.name))
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 #Fixes name from categorys to categories in admin page
