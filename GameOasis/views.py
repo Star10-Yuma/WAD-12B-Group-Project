@@ -104,9 +104,6 @@ def updateItem(request):
     productId = data['productId']
     action = data['action']
 
-    print('ProductId:', productId)
-    print('Action:', action)
-
     customer = request.user.customer
     product = Product.objects.get(id=productId)
     order, created = OrderCart.objects.get_or_create(customer=customer, is_complete=False)
@@ -174,7 +171,6 @@ def user_login(request):
 
         else:
             #invalid login details provided so no logging in
-            print(f"Invalid login details: {username}, {password}")
             # return HttpResponse("Invalid login details supplied.")
             messages.error(request, 'Invalid login details supplied.')
             return render(request, 'GameOasis/login_new.html')
