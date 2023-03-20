@@ -1,7 +1,6 @@
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'websitemain.settings')
-from django.template.defaultfilters import slugify
 
 import django
 
@@ -13,10 +12,18 @@ def populate():
     consoles_products = [
         {
             'name': 'PS5',
-            'price': 450.99,
+            'price': 500.00,
             'is_digital': False,
             'image': 'ps5.jpg',
             'slug': 'ps5',
+        },
+        {
+            'name': 'Xbox Series X',
+            'price': 500.00,
+            'is_digital': False,
+            'image': 'xbox.jpg',
+            'slug': 'xbox-series-x',
+
         }
     ]
 
