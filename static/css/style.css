@@ -51,12 +51,12 @@ body{
    transform: scale(0);
    transition: 0.8s;
    font-size: 1.5rem;
-   color: white;
+   color: rgb(255, 255, 255);
 }
 
 .slide-img:hover a{
    opacity: 1;
-   transform: scale(1);
+   transform: scale(3);
 }
 
 .img-1{
@@ -78,7 +78,7 @@ body{
 .img-5{
    background-image: url(assassinMirage.png);
 }
-@media(max-width:1600px) {
+@media(max-width:1680px) {
    .container{
        width: 100%;
    }
