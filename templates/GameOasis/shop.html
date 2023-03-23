@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends 'GameOasis/base.html' %}
+{% extends 'GameOasis/navbar.html' %}
 {% load static %}
 <html>
 
@@ -7,25 +7,304 @@
 
 {% block navbar_content %}
 
+<header>
+	<link rel="stylesheet" href = "css/shop.css">
+</header>
 
-	<div class="row">
-		{% for product in products %}
-		<div class="col-lg-4">
-		<img class ="productImage" src="{{ product.image_url }}">
-			<div class="itemlayout-element product">
-				<h6><strong>{{product.name}}</strong></h6>
-				<hr>
-				<button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart"> Add to Cart</button>
-				<a class="btn btn-outline-success" href="{% url 'GameOasis:view_product' product.slug %}">View</a>
-				<h4 style="display: inline-block; float: right">£{{product.price|floatformat:2}}</h4>
+<div class="page_games">
+
+
+	<div class="catalog-games">
+		
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/yGsk4zJ.jpg" alt="">
+				<div class="name_game">
+				<h2>Dungeons Of Pimen</h2>
+				</div>
 			</div>
+				<div class="price">
+					<div class="money">
+					<p>£10</p>
+						</div>
+					<div class="sale">
+						<p>-15%</p>
+					</div>
+				</div>
+			</a>
 		</div>
-		{% endfor %}
-	
+
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/LEuBCcl.jpg" alt="">
+				<div class="name_game">
+					<h2>Grand Theft Auto V</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£40</p>
+						</div>
+					<div class="sale">
+						<p>-50%</p>
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/2usyqft.jpg" alt="">
+				<div class="name_game">
+					<h2>Red Dead Redemption 2</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£50</p>
+						</div>
+					<div class="sale">
+						<p>-20%</p>
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/NnyduA4.jpg" alt="">
+				<div class="name_game">
+					<h2>Borderlands The Pre-Sequel</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£30</p>
+						</div>
+					<div class="sale">
+						<p>-75%</p>
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/Elub5tC.jpg" alt="">
+				<div class="name_game">
+					<h2>Rainbow Six Siege</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£5</p>
+						</div>
+					<div class="sale">
+						<p>-60%</p>
+					</div>
+				</div>
+			</a>
+
+		</div>
+
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/njFCfOe.jpg" alt="">
+				<div class="name_game">
+					<h2>The Witcher Wild Hunt</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£9</p>
+						</div>
+					<div class="sale">
+						<p>-5%</p>
+					</div>
+				</div>
+			</a>
+		</div>
+		
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/2OxpUL9.jpg" alt="">
+				<div class="name_game">
+					<h2>The Elder Scrolls 3 Morrowind</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£2</p>
+						</div>
+					<div class="sale">
+						<p>-65%</p>
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/sxjK9fu.jpg" alt="">
+				<div class="name_game">
+					<h2>Dark Souls 2</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£10</p>
+						</div>
+					<div class="sale">
+						<p>-75%</p>
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/HMV3D9z.jpg" alt="">
+				<div class="name_game">
+					<h2>Underworld Ascendant</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£10</p>
+						</div>
+					<div class="sale">
+						<p>-15%</p>
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/ZoANjFc.jpg" alt="">
+				<div class="name_game">
+					<h2>Might And Magic Legacy X</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£1</p>
+						</div>
+					<div class="sale">
+						<p>-95%</p>
+					</div>
+				</div>
+			</a>
+		</div>
+		
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/oJaB04b.jpg" alt="">
+				<div class="name_game">
+					<h2>Shadow The Tomb Raider</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£40</p>
+						</div>
+					<div class="sale">
+						<p>-15%</p>
+					</div>
+				</div>
+			</a>
+		</div>
+		
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/THQS50k.jpg" alt="">
+				<div class="name_game">
+					<h2>Darksiders 3</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£20</p>
+						</div>
+					<div class="sale">
+						<p>-65%</p>
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/ctkYNLk.jpg" alt="">
+				<div class="name_game">
+					<h2>Batman: Arkham Origins</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£10</p>
+						</div>
+					<div class="sale">
+						<p>-80%</p>
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/5IXR5G5.jpg" alt="">
+				<div class="name_game">
+					<h2>ARK: Survival Evolved</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£10</p>
+						</div>
+					<div class="sale">
+						<p>-65%</p>
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="game">
+			<a href="#">
+				<div class="game_img">
+				<img src="https://i.imgur.com/KRKI9mk.jpg" alt="">
+				<div class="name_game">
+					<h2>Far Cry Primal</h2>
+					</div>
+			</div>
+				<div class="price">
+					<div class="money">
+					<p>£15</p>
+						</div>
+					<div class="sale">
+						<p>-80%</p>
+					</div>
+				</div>
+			</a>
+		</div>
 	</div>
+</div>
 
 	
 {% endblock navbar_content %}
-
 	
 </html>
