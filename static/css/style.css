@@ -28,7 +28,7 @@ body{
 
 
 .slide-img{
-   width: 100%;
+   width: 200%;
    height: 1080px;
    border-radius: 360px;
    margin: auto;
@@ -80,6 +80,6 @@ body{
 }
 @media(max-width:1680px) {
    .container{
-       width: 100%;
+       width: 300%;
    }
 }
