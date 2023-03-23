@@ -1,74 +1,94 @@
 <!DOCTYPE html>
-{% extends 'GameOasis/navbar.html' %}
+{% extends 'GameOasis/base.html' %}
 {% load static %}
+{% block navbar_content %}
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
-    <link rel="stylesheet" href = "css/style.css">
+    <link rel="stylesheet" href = "{% static 'css/style.css' %}">
 </head>
 
 <body>
 
-    <div class="container">    
-        <!-- Showcase -->
-        <header class="showcase">      
-            <h2>Latest Games</h2>
-            <p>
-            Find the latest deals on our website
-            </p>
-            <a href="/shop.html" class="btn">
-            Shop Now <i class="fas fa-chevron-right"></i>
-            </a>
-        </header>
 
-        <!-- Home cards 1 -->
-        <section class="home-cards">
-            <div>
-            <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwallsdesk.com%2Fwp-content%2Fuploads%2F2016%2F04%2FRed-Dead-Redemption-2-Background.png&f=1&nofb=1&ipt=5543dcd11716e6d6fe67b8b7ae2fa2f4e1a3fa227792d6c62462a23dc0095abf&ipo=images" alt="">
-            <h3>New Red Dead Redemption 2</h3>
-            <p>
-                Get ready for a journey in the western world.
-            </p>
-            <a href="https://www.rockstargames.com/reddeadredemption2/restricted-content/agegate/denied">Learn More <i class="fas fa-chevron-right"></i></a>
+    <section id="slider">
+        <div class="container">
+            <div class="subcontainer">
+                <div class="slider-wrapper">
+                    <div>
+                        <h2>Upcoming Videogames</h2>
+                    </div>
+                    <br>
+                    <div class="my-slider">
+                        <div>
+                            <div class="slide">
+                                <div class="slide-img img-1">
+                                    <a href="https://www.gamespot.com/articles/2023-upcoming-games-release-schedule/1100-6508202/">Learn More</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Upcoming games</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="slide">
+                                <div class="slide-img img-2">
+                                    <a href="https://wwe.2k.com/2k23/">Learn More</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>WWE 2K23</h3>
+                                    <p>Available on all consoles</p>
+                                </div>
+                            </div>
+                        </div>   
+                        <div>
+                            <div class="slide">
+                                <div class="slide-img img-3">
+                                    <a href="https://www.techradar.com/news/suicide-squad-game">Learn More</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Suicide Squad: Kill The Justice League</h3>
+                                    <p>Available on all consoles</p>
+                                </div>
+                            </div>
+                        </div>   <div>
+                            <div class="slide">
+                                <div class="slide-img img-4">
+                                    <a href="https://www.residentevil.com/re4/en-us/">Learn More</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Resident Evil 4 Remake</h3>
+                                    <p>Available on all consoles</p>
+                                </div>
+                            </div>
+                        </div>   <div>
+                            <div class="slide">
+                                <div class="slide-img img-5">
+                                    <a href="https://www.ubisoft.com/en-us/game/assassins-creed/mirage">Learn More</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Assassin's Creed Mirage</h3>
+                                    <p>Available on all consoles</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Wd_y_M4lnplFPAZUNrlGPQHaEK%26pid%3DApi&f=1&ipt=fa2e47dc53e9e7fbb6ea9ea9d488cc6d181426f9288b3c5747cc36665994f12a&ipo=images" alt="" />
-            <h3>New Age of Empires 4</h3>
-            <p>
-                A grand strategy in a medieval world.
-            </p>
-            <a href="https://www.ageofempires.com/games/age-of-empires-iv/">Learn More <i class="fas fa-chevron-right"></i></a>
-            </div>
-            <div>
-            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.videogamesblogger.com%2Fwp-content%2Fuploads%2F2020%2F09%2F6wu4sdkzgqo.jpg&f=1&nofb=1&ipt=bb49798f0dd67ef30256c0babd9df825dde72c9a1a5c323ac1a0f0aa6181ba35&ipo=images" alt="" />
-            <h3>POSTAL Brain Damaged</h3>
-            <p>
-                Just go Postal!!
-            </p>
-            <a href="https://runningwithscissors.com/games/postal-brain-damaged/">Learn More <i class="fas fa-chevron-right"></i></a>
-            </div>
-            <div>
-            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fassets.nintendo.com%2Fimage%2Fupload%2Fc_pad%2Cf_auto%2Ch_613%2Cq_auto%2Cw_1089%2Fncom%2Fen_US%2Fgames%2Fswitch%2Fp%2Fpocket-warriors-switch%2Fhero%3Fv%3D2021080119&f=1&nofb=1&ipt=f73caf916144f807927bdc6196c4b1a1e7eaca87f9d19890e932be9abc33cf65&ipo=images" alt="" />
-            <h3>Pocket Warriors</h3>
-            <p>
-                First Nintendo Switch made in Turkey by two madlads. Get ready for a journey filled with treason and epic fights.
-            </p>
-            <a href="https://flyingss.com/portfolio/pocket-warriors/">Learn More <i class="fas fa-chevron-right"></i></a>
-            </div>
-        </section>
-    </div>
+        </div>
 
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-inner">
-        <div><i class="fas fa-globe fa-2x"></i> English (United Kingdom)</div>
-        <ul>
-                  <li><a href="/concatctus.html">Contact Us</a></li>
-                  <li><a href="#">&copy; GameOasis</a></li>
-        </ul>
-      </div>
-    </footer>
+    </section>
+
+    
+
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
 
 </body>
 {% endblock navbar_content %}
