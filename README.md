@@ -1,6 +1,7 @@
-   ## GameOasis Web Application:
+## GameOasis Web Application:
 
-     -This is a web application that is an e-commerce web application that specialises in selling consoles and video-games in a quick and simply way.
+- This is a web application that is an e-commerce web application 
+that specialises in selling consoles and video-games in a quick and simply way.
 
 
 
